@@ -1,36 +1,35 @@
+import { useState } from "react";
 import "./App.css";
+import AddNewProjectComponent from "./components/AddNewProjectComponent";
 import AssignmentsComponent from "./components/AssignmentsComponent";
+import CardComponent from "./components/CardComponent";
 import DashboardComponent from "./components/DashboardComponent";
+import FilterComponent from "./components/FilterComponent";
 import LearningMaterialsComponent from "./components/LearningMaterialsComponent";
 import SidebarComponent from "./components/SidebarComponent";
 import TopNavbarComponent from "./components/TopNavbarComponent";
 
 function App() {
+  const [newData, setNewData] = useState("")
   return (
     <>
-      <div className="font-rubik text-primary-text bg-light-gray flex h-screen overflow-hidden">
-        {/* sidebar */}
-        <div className="w-1/5">
+      <main className="grid grid-cols-12 bg-gray-100">
+        <div className="col-span-2">
           <SidebarComponent />
         </div>
-
-        {/* top navigation bar */}
-        <div className="w-4/5 p-12">
-          <TopNavbarComponent />
-
-          {/* dashboard summary */}
-          <div className="flex justify-between">
-            <div className="w-9/12 mt-5 space-y-5">
+        <div className="col-span-10 p-4">
+          <TopNavbarComponent dataTransferToCard={(data)=>{setNewData(data)}}/>
+          <div className="grid grid-cols-12">
+            <div className="col-span-9 p-4">
               <DashboardComponent />
-              <AssignmentsComponent />
+              <AssignmentsComponent takeData={newData}/>
             </div>
-
-            <div className="w-3/12 pl-10 mt-5">
+            <div className="col-span-3 mt-5">
               <LearningMaterialsComponent />
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }

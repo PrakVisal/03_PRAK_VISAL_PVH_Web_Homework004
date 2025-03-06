@@ -1,10 +1,29 @@
-import React from "react";
-import { learningMaterials } from "../data/learningMaterials";
-import { Star } from "lucide-react";
+import React, { useState } from "react";
+import { Key, Star } from "lucide-react";
 import FilterComponent from "./FilterComponent";
+import { learningMaterials } from "../data/learningMaterials";
 
 export default function LearningMaterialsComponent() {
-  // format date
+  const [materials,setMaterials] = useState(learningMaterials);
+  const handleSortValue = (e) => {
+      if(e == "A-Z"){
+        const sortAsc = [...materials].sort((a,b)=>(
+          a.title.localeCompare(b.title)
+        ))
+        setMaterials(sortAsc)
+      }else{
+        const sortDsc = [...materials].sort((a,b)=>(
+          a.title.localeCompare(b.title)
+        )).reverse()
+        setMaterials(sortDsc)
+      }
+  }
+  const toggleStar = (id)=>{
+     setMaterials((oldData)=> {
+       return oldData.map((data)=> data.id === id ? { ...data, isFavorite: !data.isFavorite }: data)})
+  }
+
+    // format date
   const formattedDate = (date) => {
     const options = {
       weekday: "short",
@@ -16,11 +35,12 @@ export default function LearningMaterialsComponent() {
     return newDate;
   };
 
-  return (
-    <div className="bg-white drop-shadow-lg rounded-2xl overflow-auto max-h-5/6 no-scrollbar">
-      {/* calling filter component */}
-      <FilterComponent />
 
+  return (
+    <div className="bg-white drop-shadow-lg rounded-2xl overflow-auto h-[87vh] ">
+      
+      {/* calling filter component */}
+      <FilterComponent takeSortValue={handleSortValue}/>
       {/* title */}
       <div className="p-4 flex justify-between items-center">
         <h2 className="text-xl font-semibold">Learning Materials</h2>
@@ -28,36 +48,30 @@ export default function LearningMaterialsComponent() {
       </div>
 
       {/* materials list */}
-      <div className="space-y-3">
-        {learningMaterials?.map((material) => (
-          <div
-            key={material?.id}
-            className="bg-light-gray px-4 py-2 flex gap-5 items-center"
-          >
-            <img
-              src={material?.image}
-              alt={material?.title}
-              width={50}
-              height={50}
-              className="rounded-xl"
-            />
-
-            <div className="w-full">
-              <div className="flex justify-between">
-                <p className="text-base font-medium">{material?.title}</p>
-                <Star
-                  size={20}
-                  fill={`${material?.isFavorite ? "#FAA300" : "none"}`}
-                  stroke={`${material?.isFavorite ? "#FAA300" : "#2B343B"}`}
-                />
-              </div>
-              <p className="text-gray-400 text-sm">
-                Posted at: {formattedDate(material?.postedAt)}
-              </p>
+      {materials.map((items)=>(
+        <div className="space-y-3">
+        <div className="bg-light-gray px-4 py-3 m-4 rounded-2xl flex gap-5 items-center">
+          <img
+            src={items.image}
+            alt="HTML5"
+            width={50}
+            height={50}
+            className="rounded-xl"
+          />
+          <div className="w-full">
+            <div className="flex justify-between">
+              <p className="text-base font-medium">{items.title}</p>
+              <Star size={20}
+              onClick={()=>toggleStar(items.id)} 
+              fill={`${items.isFavorite? "#FAA300" : "none" }`}
+              stroke={`${items.isFavorite ? "#FAA300" : "#2B343B"}`}
+               />
             </div>
+            <p className="text-gray-400 text-sm">Posted at: {formattedDate(items.postedAt)}</p>
           </div>
-        ))}
+        </div>
       </div>
+      ))}
     </div>
   );
 }
