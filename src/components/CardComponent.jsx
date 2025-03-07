@@ -47,8 +47,8 @@ export default function CardComponent({title,date,progress,description}) {
   };
   return (
     <div>
-      <div className="min-w-77 h-65 p-6 bg-white rounded-2xl shadow-sm dark:bg-gray-800 dark:border-gray-700 m-3">
-        <div className="flex justify-between mb-5">
+      <div className="min-w-77 p-5 bg-white rounded-2xl shadow-sm dark:bg-gray-800 dark:border-gray-700 m-3">
+        <div className="flex justify-between mb-3">
           {/* date */}
           <p className={`${handleTextColor(progress)} text-md font-medium`}>{formattedDate(date)}</p>
           <EllipsisVertical size={20} color="#374957" />
@@ -57,8 +57,8 @@ export default function CardComponent({title,date,progress,description}) {
         <h5 className="capitalize mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title}
         </h5>
-        <p className="line-clamp-2 mb-3 font-normal text-justify text-gray-400 dark:text-gray-400">
-          {description}
+        <p className="line-clamp-2 mb-3 font-normal h-13 text-md text-justify text-gray-400 dark:text-gray-400">
+          {description === "" ? "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, est voluptatem magnam rerum fugit quam sequi?" : description}
         </p>
 
         {/* progress bar */}
