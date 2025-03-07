@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import AddNewProjectComponent from "./AddNewProjectComponent";
 import CardComponent from "./CardComponent";
-function AssignmentsComponent({takeData}) {
+function AssignmentsComponent({inputed}) {
   const [getData, setData] = useState([]);
   const searchData = getData.filter((e)=>
-    e.projectName.toLowerCase().includes(takeData.toLowerCase())
+    e.projectName.toLowerCase().includes(inputed.toLowerCase())
   )
   return (
     <div>

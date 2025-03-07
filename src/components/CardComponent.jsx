@@ -4,13 +4,13 @@ import React from "react";
 export default function CardComponent({title,date,progress,description}) {
   function handleColor (progressing){
     if(progressing==="25"){
-      return "-custom-pink"
+      return "bg-custom-pink"
     }else if(progressing ==="50"){
-      return "-custom-yellow-500"
+      return "bg-custom-yellow-500"
     }else if(progressing === "75"){
-      return "-custom-carrot"
+      return "bg-custom-carrot"
     }else{
-      return "-custom-sky-blue"
+      return "bg-custom-sky-blue"
     }
   }
   // I don't want make this function but when I try to reuse handleColor function some colors just error
@@ -38,7 +38,6 @@ export default function CardComponent({title,date,progress,description}) {
   }
   const formattedDate = (date) => {
     const options = {
-      weekday: "short",
       year: "numeric",
       month: "short",
       day: "numeric",
@@ -68,12 +67,12 @@ export default function CardComponent({title,date,progress,description}) {
           <p>{progress}%</p>
         </div>
         <div className={`relative mb-5 ${handleLength(progress)} bg-gray-200 rounded-full h-2.5 dark:bg-gray-700`}>
-          <div className={`bg${handleColor(progress)} h-2.5 rounded-full`}></div>
+          <div className={`${handleColor(progress)} h-2.5 rounded-full`}></div>
         </div>
         {/* deadline */}
         <div className="flex justify-end">
           <p className="font-medium bg-light-gray py-1.5 px-4 rounded-lg max-w-28 text-center">
-            {new Date(date) > new Date() ? `${Math.ceil((new Date(date) - new Date()) / (1000 * 60 * 60 *24) )} day left` : "Deadline Passed"}
+            {new Date(date) > new Date() ? `${Math.ceil((new Date(date) - new Date()) / (1000 * 60 * 60 *24) )} day left` : "Today"}
           </p>
         </div>
       </div>

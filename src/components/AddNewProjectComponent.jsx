@@ -23,6 +23,16 @@ export default function AddNewProjectComponent({values}) {
       alert("Please fill the progressed")
       return
     }
+    
+    var todayDate = new Date().toISOString().slice(0, 10);
+    console.log(todayDate);
+    console.log("Our Date: ",formData.dueDate)
+    console.log("Now : ",todayDate)
+    
+    if(formData.dueDate<todayDate){
+      alert("Invalid date")
+      return 
+    }
     setProjects([...projects, formData]); // Add new project to list
     e.target.reset() // reset ui form
     setFormData({ projectName: "", dueDate: "", progress: "", description: "" }); // Reset form fields
@@ -84,6 +94,7 @@ export default function AddNewProjectComponent({values}) {
                     Project Name
                   </label>
                   <input
+              
                     type="text"
                     name="projectName"
                     id="projectName"
