@@ -10,7 +10,7 @@ function App() {
   const [newData, setNewData] = useState("")
   return (
     <>
-      <main className="grid grid-cols-12 bg-gray-100">
+      <main className="grid grid-cols-12 bg-gray-100 overflow-hidden h-screen">
         <div className="col-span-2">
           <SidebarComponent />
         </div>

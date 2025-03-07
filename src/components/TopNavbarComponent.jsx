@@ -10,7 +10,7 @@ export default function TopNavbarComponent({dataTransferToCard}) {
   };
 
   return (
-    <div className="flex justify-between items-center mx-7 ">
+    <div className="flex justify-between items-center ml-7 mr-3">
       <form className="relative w-9/12 " onSubmit={handleSubmit}>
         {/* search button */}
         <button className="cursor-pointer">
@@ -22,7 +22,7 @@ export default function TopNavbarComponent({dataTransferToCard}) {
         onInput={handleSubmit}
           type="text"
           placeholder="Search assignment here"
-          className="w-full bg-white py-3 pl-14 pr-5 rounded-xl h-12 border-none focus:border-none focus:ring-0 focus:outline-custom-sky-blue"
+          className="w-[97.5%] bg-white py-3 pl-14 pr-5 rounded-xl h-12 border-none focus:border-none focus:ring-0 focus:outline-custom-sky-blue"
         />
       </form>
 

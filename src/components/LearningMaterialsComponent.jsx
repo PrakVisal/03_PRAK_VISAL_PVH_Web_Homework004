@@ -37,7 +37,7 @@ export default function LearningMaterialsComponent() {
 
 
   return (
-    <div className="bg-white drop-shadow-lg rounded-2xl overflow-auto h-[87vh] ">
+    <div className="bg-white drop-shadow-lg rounded-2xl overflow-auto h-[87vh] no-scrollbar mr-3">
       
       {/* calling filter component */}
       <FilterComponent takeSortValue={handleSortValue}/>
